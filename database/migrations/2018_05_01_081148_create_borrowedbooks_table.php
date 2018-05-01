@@ -20,6 +20,8 @@ class CreateBorrowedbooksTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('book_id');
+            $table->date('dateborrowed');
+            $table->date('datereturn');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@
 			</div>
 			<div class="modal-body">
 				<div id="success_popup_body"></div>
-				<button class="btn btn-info float-right" data-dismiss="modal" data-toggle="modal">OK</button>
+				<button class="btn btn-info float-right" id="success_popup_ok" data-dismiss="modal" data-toggle="modal">OK</button>
 			</div>
 		</div>
 	</div>

@@ -36,21 +36,25 @@
 		</form>
 
 		<table class="table table-hover table-responsive-lg">
-			<thead class="thead-dark">
+			<thead class="thead-dark text-center">
 				<tr>
 					<th>Title</th>
 					<th>Author</th>
 					<th>Genre</th>
+					<th>Date Borrowed</th>
+					<th>Date Return</th>
 					<th>Return</th>
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody class="text-center">
 				@foreach($book as $books)
 					<tr>
 						<td>{{$books->title}}</td>
 						<td>{{$books->author}}</td>
 						<td>{{$books->genre}}</td>
+						<td>{{$books->dateborrowed}}</td>
+						<td>{{$books->datereturn}}</td>
 						<td><a href="/return/{{$books->book_id}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus">Return</span></a></td>
 					</tr>
 				@endforeach

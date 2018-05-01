@@ -10,5 +10,8 @@
 <body>
 	@include('nav.nav')
 	@include('modal.login')
+	@include('modal.register')
+	@include('modal.error_popup')
+	@include('modal.success_popup')
 </body>
 </html>

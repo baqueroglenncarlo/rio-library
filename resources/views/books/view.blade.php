@@ -38,7 +38,7 @@
 		</form>
 
 		<table class="table table-hover table-responsive-lg">
-		<thead class="thead-dark">
+		<thead class="thead-dark text-center">
 			<tr>
 				<th>Title</th>
 				<th>Author</th>
@@ -47,7 +47,7 @@
 				<th>Borrow</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="text-center">
 			@foreach($books as $book)
 			<tr>
 				<td>{{$book->title}}</td>
@@ -57,7 +57,7 @@
 				<!-- <td><a href="/borrow/{{$book->id}}" class="btn btn-info">Borrow</a></td> -->
 				<td>
 					@if(Auth::check())
-						<a href="/borrow/{{$book->id}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus">Borrow</span></a>
+						<a href="/borrow/{{$book->id}}" class="btn btn-primary">Borrow</a>
 					@else
 						<button class="btn btn-primary" data-toggle="modal" data-target="#login_modal">Login</button>
 						<button class="btn btn-info" data-toggle="modal" data-target="#register_modal">Signup</button>

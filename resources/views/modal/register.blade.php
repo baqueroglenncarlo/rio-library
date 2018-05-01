@@ -85,7 +85,7 @@
 							$('#success_popup_body').text("You can now login to your account.");
 							$('#registration_form')[0].reset();
 							$('#register_modal').modal('hide');
-							$('#success_popup').data('target','#login_modal');
+							$('#success_popup_ok').attr('data-target','#login_modal');
 							$('#close_success_message').attr('data-target','#register_modal');
 						}
 					}

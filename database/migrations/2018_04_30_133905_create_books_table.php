@@ -17,12 +17,12 @@ class CreateBooksTable extends Migration
             $table->myengine    = 'MyIsam';
             $table->charset     = 'utf8';
             $table->collation   = 'utf8_unicode_ci';
-            $table->increments('book_id');
+            $table->increments('id');
             $table->string('title');
             $table->string('author');
             $table->string('genre');
             $table->integer('section_id');
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }

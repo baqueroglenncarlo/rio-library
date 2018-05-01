@@ -31,8 +31,10 @@ class UsersController extends Controller
     public function login(){
         if(!auth()->attempt(request(['username', 'password']))){
             echo "Invalid Username or Password";
+        }else{
+            echo "Success";
         }
-        $book = BorrowedBook::leftjoin('books', 'borrowedbooks.id', '=', 'books.id')->paginate(5);
+        
     }
 
     public function logout(){

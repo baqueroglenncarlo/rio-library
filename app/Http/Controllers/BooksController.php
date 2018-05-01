@@ -8,6 +8,7 @@ use App\Section;
 use App\Book;
 use App\BorrowedBook;
 use Auth;
+use Carbon\Carbon;
 
 
 class BooksController extends Controller
@@ -20,9 +21,6 @@ class BooksController extends Controller
     	]);
 
     	$add = Book::create(request(['title', 'author', 'genre', 'section_id']));
-    	$add->status = '0';
-    	$add->save();
-
 
     	return redirect('/add');
     }
@@ -33,22 +31,26 @@ class BooksController extends Controller
             $search = request('search');
             $genre = request('category');
             $books = Book::selectRaw('books.*, sections.section_name')
-            ->leftjoin('sections', 'books.section_id', '=', 'sections.id')
-            ->where('status', '0')
-            ->where($genre, 'like', '%'.$search.'%')
-            ->paginate(10);
+                    ->leftjoin('sections', 'books.section_id', '=', 'sections.id')
+                    ->where('status', '0')
+                    ->where($genre, 'like', '%'.$search.'%')
+                    ->paginate(10);
         }else{
-            $books = Book::leftjoin('sections', 'books.section_id', '=', 'sections.id')->where('status', '0')->paginate(10);
+            $books = Book::selectRaw('books.*, sections.section_name')
+                    ->leftjoin('sections', 'books.section_id', '=', 'sections.id')
+                    ->where('status', '0')
+                    ->paginate(10);
         }
 
         return view('books.view', compact('books'));
     }
 
     public function show(){
-        $book = BorrowedBook::leftjoin('books', 'borrowedbooks.id', '=', 'books.id')
-                ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
-                ->where('user_id', auth()->user()->id)
-                ->paginate(5);
+        $book = BorrowedBook::selectRaw('borrowedbooks.*, books.*')
+                    ->leftjoin('books', 'borrowedbooks.book_id', '=', 'books.id')
+                    ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
+                    ->where('user_id', auth()->user()->id)
+                    ->paginate(5);
 
         return view('books.borrowed_books', compact('book'));
     }
@@ -58,37 +60,44 @@ class BooksController extends Controller
         $book->status = 1;
         $book->save();
 
-        $borrowbook = BorrowedBook::create(['user_id'=>auth()->user()->id,'book_id'=>$id]);
+        $datetoday = Carbon::today();
+        $datetoreturn = Carbon::today()->addDays(3);
 
-       /* return redirect('/viewbooks');*/
+        $borrowbook = BorrowedBook::create(['user_id'=>auth()->user()->id,'book_id'=>$id,'dateborrowed'=>$datetoday,'datereturn'=>$datetoreturn]);
+
+        return redirect('/viewbooks');
     }
 
     public function viewborrowed(){
         if(request('search')){
             $search = request('search');
             $genre = request('category');
-            $book = BorrowedBook::leftjoin('books', 'borrowedbooks.id', '=', 'books.id')
-                ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
-                ->where('user_id', auth()->user()->id)
-                ->where($genre, 'like', '%'.$search.'%')
-                ->paginate(5);
+            $book = BorrowedBook::selectRaw('borrowedbooks.*, books.*')
+                    ->leftjoin('books', 'borrowedbooks.book_id', '=', 'books.id')
+                    ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
+                    ->where('user_id', auth()->user()->id)
+                    ->where($genre, 'like', '%'.$search.'%')
+                    ->paginate(5);
         }else{
-            $book = BorrowedBook::leftjoin('books', 'borrowedbooks.id', '=', 'books.id')
-                ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
-                ->where('user_id', auth()->user()->id)
-                ->paginate(5);
+            $book = BorrowedBook::selectRaw('borrowedbooks.*, books.*')
+                    ->leftjoin('books', 'borrowedbooks.book_id', '=', 'books.id')
+                    ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
+                    ->where('user_id', auth()->user()->id)
+                    ->paginate(5);
         }
 
         return view('books.borrowed_books', compact('book'));
     }
 
     public function returnbook($id){
+        $bookborrowed = BorrowedBook::where('book_id', $id);
+        $bookborrowed->delete();
+
         $book = Book::find($id);
         $book->status = 0;
         $book->save();
 
-        $bookborrowed = BorrowedBook::where('id', $id);
-        $bookborrowed->delete();
+        
 
         return redirect('/borrow');
 
