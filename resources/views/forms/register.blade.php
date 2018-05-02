@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Rio Library</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/global.css')}}">
 	<script type="text/javascript" src="{{asset('js/jquery-3.1.1.min.js')}}"></script>

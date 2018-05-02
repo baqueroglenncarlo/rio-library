@@ -18,6 +18,6 @@ class ViewController extends Controller
     }
 
     public function view(){
-    	return view('modal.register');
+    	return view('forms.register');
     }
 }
