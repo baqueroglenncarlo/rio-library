@@ -6,15 +6,20 @@
 
 	<div class="collapse navbar-collapse" id="navbar">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a href="/" class="nav-link">Home</span></a>
+			<li class="nav-item dropdown">
+				<a href="/add" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add</a>
+				<div class="dropdown-menu">
+					<a href="/add" class="dropdown-item">Books</a>
+					<a href="#" class="dropdown-item" data-toggle="modal" data-target="#section_modal">Section</a>
+				</div>
 			</li>
 			<li class="nav-item">
 				<a href="/viewbooks" class="nav-link">Books</span></a>
 			</li>
 			<li class="nav-item">
-				<a href="/add" class="nav-link">Add Book</span></a>
+				<a href="/borrow" class="nav-link">Borrowed Books</a>
 			</li>
+			
 		</ul>
 
 		<ul class="navbar-nav">
@@ -22,7 +27,6 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/borrow">{{Auth::user()->firstname}} {{Auth::user()->lastname}} </a> 
 					<div class="dropdown-menu">
-						<a href="/borrow" class="dropdown-item">Borrowed Books</a>
 						<a href="/logout" class="dropdown-item">Logout</a>
 					</div>
 				</li>

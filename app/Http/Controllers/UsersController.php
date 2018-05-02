@@ -11,21 +11,21 @@ use App\Book;
 class UsersController extends Controller
 {
     public function create(){
-    	$this->validate(request(),[
-    		'firstname' => 'required',
-    		'lastname'	=> 'required',
-    		'username'	=> 'required',
-    		'password'	=> 'required|confirmed'
-    	]);
+        $this->validate(request(),[
+            'firstname' => 'required',
+            'lastname'  => 'required',
+            'username'  => 'required',
+            'password'  => 'required|confirmed'
+        ]);
 
-    	if(User::where('username', request('username'))->count() > 0){
-    		echo "User Found";
-    	}else{
-    		$register = User::create(request(['firstname', 'lastname', 'username']));
-	    	$register->password = bcrypt(request('password'));
-	    	$register->save();
-	    	echo "Success";
-    	}
+        if(User::where('username', request('username'))->count() > 0){
+            echo "User Found";
+        }else{
+            $register = User::create(request(['firstname', 'lastname', 'username']));
+            $register->password = bcrypt(request('password'));
+            $register->save();
+            echo "Success";
+        }
     }
 
     public function login(){

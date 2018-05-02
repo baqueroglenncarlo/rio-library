@@ -1,12 +1,12 @@
-<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labeledby="login_modal_label" aria-hidden="true">
+<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labeledby="login_modal_label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="login_modal_label">Login</h4>
-				<button type="button" class="close" data-dismiss="modal">
+				<!-- <button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
-				</button>
+				</button> -->
 			</div>
 			<div class="modal-body">
 				<form method="post" id="login_form">
@@ -23,7 +23,7 @@
 					</div>
 
 					<button type="submit" id="login" class="btn btn-success">Login</button>
-					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#register_modal" data-dismiss="modal">Register</button>
+					<!-- <button type="button" class="btn btn-link" data-toggle="modal" data-target="#register_modal" data-dismiss="modal">Register</button> -->
 				</form>
 			</div>
 		</div>

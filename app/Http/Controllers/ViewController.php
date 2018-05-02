@@ -14,6 +14,10 @@ class ViewController extends Controller
     public function addnewbook(){
     	$section = Section::orderBy('section_name', 'ASC')->get();
 
-    	return view('forms.addbooks', compact('section'));
+    	return view('books.addbooks', compact('section'));
+    }
+
+    public function view(){
+    	return view('modal.register');
     }
 }

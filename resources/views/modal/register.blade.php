@@ -1,12 +1,18 @@
-<div class="modal fade" id="register_modal" tabindex="-1" role="dialog" aria-labeledby="register_modal_label" aria-hidden="true">
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/global.css')}}">
+	<script type="text/javascript" src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.js')}}"></script>
+</head>
+<body>
+<div class="modal fade" id="register_modal" tabindex="-1" role="dialog" aria-labeledby="register_modal_label" aria-hidden="true" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="register_modal_label">Sign up</h4>
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span>
-					<span class="sr-only">Close</span>
-				</button>
 			</div>
 			<div class="modal-body">
 				<form method="post" id="registration_form">
@@ -40,8 +46,18 @@
 	</div>
 </div>
 
+	@include('modal.error_popup')
+	@include('modal.success_popup')
+
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#register_modal').modal('show');
+
+		$('#register_modal').modal({
+			backdrop:'static',
+			keyboard:false
+		});
+
 		$(document).on('submit','#registration_form', function(event){
 			event.preventDefault();
 
@@ -85,7 +101,7 @@
 							$('#success_popup_body').text("You can now login to your account.");
 							$('#registration_form')[0].reset();
 							$('#register_modal').modal('hide');
-							$('#success_popup_ok').attr('data-target','#login_modal');
+							$('#success_popup_ok').attr('data-target','#register_modal');
 							$('#close_success_message').attr('data-target','#register_modal');
 						}
 					}
@@ -93,5 +109,48 @@
 				})
 			}
 		});
+
+		function preventNumberInput(event){
+			var keyCode = (event.keyCode ? event.keyCode : event.which);
+			if(keyCode > 47 && keyCode < 58){
+				event.preventDefault();
+			}
+		}
+
+		$('#firstname').keyup(function(event){
+			var str = $(this).val();
+			var array = str.split(' ');
+			var newArray = [];
+
+			for(var i=0; i < array.length; i++){
+				newArray.push(array[i].charAt(0).toUpperCase() + array[i].slice(1));
+			}
+			this.value = newArray.join(' ');
+
+
+
+		});
+
+		$('#firstname').keypress(function(event){
+			preventNumberInput(event);
+		});
+
+		$('#lastname').keyup(function(){
+			var str = $(this).val();
+			var array = str.split(' ');
+			var newArray = [];
+
+			for(var i=0; i < array.length; i++){
+				newArray.push(array[i].charAt(0).toUpperCase() + array[i].slice(1));
+			}
+			this.value = newArray.join(' ');
+		});
+
+		$('#lastname').keypress(function(event){
+			preventNumberInput(event);
+		});
 	});
 </script>
+
+</body>
+</html>

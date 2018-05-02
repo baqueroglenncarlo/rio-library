@@ -49,7 +49,6 @@ class BooksController extends Controller
         $book = BorrowedBook::selectRaw('borrowedbooks.*, books.*')
                     ->leftjoin('books', 'borrowedbooks.book_id', '=', 'books.id')
                     ->leftjoin('users', 'borrowedbooks.user_id', '=', 'users.id')
-                    ->where('user_id', auth()->user()->id)
                     ->paginate(5);
 
         return view('books.borrowed_books', compact('book'));

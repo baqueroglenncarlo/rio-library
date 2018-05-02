@@ -9,7 +9,9 @@ Route::get('/logout', 'UsersController@logout');
 Route::get('/borrow/{id}', 'BooksController@borrow');
 Route::get('/borrow', 'BooksController@show');
 Route::get('/return/{book_id}', 'BooksController@returnbook');
+Route::get('/reg', 'ViewController@view');
 
 Route::post('/addbook', 'BooksController@create');
 Route::post('/register', 'UsersController@create');
 Route::post('/login', 'UsersController@login');
+Route::post('/section', 'SectionsController@create');

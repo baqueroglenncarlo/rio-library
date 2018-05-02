@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 </head>
-<body>
+<body class="bg-light">
 	@include('nav.nav')
 	
 	<div class="container-narrow">
@@ -23,7 +23,7 @@
 
 					<div class="form-group">
 						<label for="title" class="control-label">Title</label>
-						<input type="text" name="title" class="form-control" required>
+						<input type="text" name="title"  class="form-control" required>
 					</div>
 
 					<div class="form-group">
@@ -59,9 +59,37 @@
 	</div>
 	
 	@include('modal.login')
-	@include('modal.register')
+	@include('modal.section')
 	@include('modal.error_popup')
 	@include('modal.success_popup')
+
+@if(!Auth::check())
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#login_modal').modal('show');
+
+		$('#login_modal').modal({
+			backdrop:'static',
+			keyboard:false
+		});
+	});
+</script>
+@endif
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.form-control').keyup(function(event){
+			var str = $(this).val();
+			var array = str.split(' ');
+			var newArray = [];
+
+			for(var i=0; i < array.length; i++){
+				newArray.push(array[i].charAt(0).toUpperCase() + array[i].slice(1));
+			}
+			this.value = newArray.join(' ');
+		});
+	});
+</script>
 	
 </body>
 </html>
