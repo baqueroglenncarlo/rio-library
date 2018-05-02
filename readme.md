@@ -1,8 +1,9 @@
 
-## Instruction
+## Database
 
-- Clone the project
+- Download the project
 - Create database name it 'rio_library'
+- Note : the username is root and the password should be null or leave it blank.
 - Open the Project folder and locate the 'rio_library.sql'
 - Then import the 'rio_library.sql' into 'rio_library' database
 
