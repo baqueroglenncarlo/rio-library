@@ -1,6 +1,6 @@
 ## Requirements
-- Xampp for Web Server if you dont had download it here https://www.apachefriends.org/index.html
-- Composer this is for managing dependencies and required libraries if dont have download it here https://getcomposer.org/ then install it.
+- Xampp for Web Server if you dont have xampp, download it here https://www.apachefriends.org/index.html
+- Composer this is for managing dependencies and required libraries if dont have composer, download it here https://getcomposer.org/ then install it.
 
 ## Database
 
