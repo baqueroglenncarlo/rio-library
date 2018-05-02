@@ -4,7 +4,7 @@
 - Clone the project
 - Create database name it 'rio_library'
 - Open the Project folder and locate the 'rio_library.sql'
-- Then import the 'rio_library.sql' in 'rio_library' database
+- Then import the 'rio_library.sql' into 'rio_library' database
 
 ## How To Run
 - Locate the downloaded project
