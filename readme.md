@@ -10,7 +10,7 @@
 - Locate the downloaded project
 - Right click the main project folder which is rio-library
 - Then find the 'Git Bash Here' selection
-- Then type to the 'Command Line' this - php artisan serve
+- Then type to the 'Command Line' this php artisan serve
 - Then run to the browser the 'http://127.0.0.1:8000'
 
 ## How To Use
